@@ -1,0 +1,19 @@
+# kubectl apply -f resourcerequests-pod.yaml --dry-run=client
+# kubectl apply -f resourcerequests-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rabbit
+  namespace: default
+spec:
+  containers:
+  - args:
+    - sleep
+    - "1000"
+    image: ubuntu
+    name: cpu-stress
+    resources:
+      limits:
+        cpu: "2"
+      requests:
+        cpu: "1"
