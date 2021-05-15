@@ -5,6 +5,9 @@
 
 > $ kubectl label nodes _**node-01**_ _**size**_=_**Large**_   
 
+### List the labels of a node
+> $ kubectl get nodes _node01_ --show-labels
+
 ## Pod config
 ```yaml
 apiVersion: v1
