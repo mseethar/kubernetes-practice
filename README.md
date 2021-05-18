@@ -1,21 +1,25 @@
 # kubernetes-practice
 ## Resources
 1. pods
-2. services  
+1. services (svc)  
    1. NodePort
-   2. ClusterIP
-   3. LoadBalancer
-3. deployments
-4. labels
-5. taints
-6. tolerations
+   1. ClusterIP
+   1. LoadBalancer
+1. deployments
+1. ReplicaSet (rs)
+1. labels
+1. taints
+1. tolerations
 
 ### Listing resources
-```shell
-$ kubectl get all
-$ kubectl get pods
-$ kubectl get services
-```
+> `$ kubectl get all`  
+
+> `$ kubectl get pods`  
+
+> `$ kubectl get services`  
+
+> `$ kubectl get pods --selector env=prod,bu=finance,tier=frontend --show-labels`
+
 ### Describe a resource
 ```shell
 $ kubectl describe nodes node01
@@ -115,7 +119,47 @@ spec:
 ```
 
 ### Labeling
-> $ ```kubectl label nodes node01 color=blue```
+> $ `kubectl label nodes node01 color=blue`  
+
+> $ `kubectl get nodes --selector <_label-key_>=<_label-value_>`  
+> $ `kubectl get nodes -l <_label-key_>=<_label-value_>`  
+
+> `$ kubectl get pods --selector env=prod,bu=finance,tier=frontend --show-labels`  
+> `$ kubectl get pods -l env=prod,bu=finance,tier=frontend --show-labels`
+
+> $ `kubectl get all --selector env=prod`  
+> $ `kubectl get all -l env=prod`
+
+#### Selectors
+##### Used in _ReplicaSet_'s  
+```yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    run: replica
+  name: replica-set-name
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: LB
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: LB
+    spec:
+      containers:
+        - image: nginx
+          name: bee
+```
+##### Used in services  
+
+__TODO__: Need sample
+
+### Annotations
+Used to attach information to the resources. For example, release version, team mail id, etc.
 
 # Certification tips and tricks
 https://www.linkedin.com/pulse/my-ckad-exam-experience-atharva-chauthaiwale/

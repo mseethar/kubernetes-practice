@@ -1,4 +1,20 @@
 # Pods
+## Listing
+Listing all the pods from all the namespaces
+> ```$ kubectl get pods -A```  
+## Labeling
+> ```$ kubectl label pods node01 color=blue```  
+
+> ```$ kubectl label pod ubuntu-sleep color=red --dry-run=client -o yaml```
+
+> ```$ kubectl get pods --show-labels```  
+
+> ```$ kubectl get pods --selector <_label-key_>=<_label-value_>```
+
+> ```$ kubectl get pods --selector run=ubuntu-sleep```  
+
+> ```$ kubectl get pods --selector os=ubuntu --show-labels```
+
 ## Container **readiness** probe
 Probes are defined at the container definition level.  
 There are three kinds of _readiness_ probes.  
@@ -65,3 +81,6 @@ livenessProbe:
          - cat
          - /usr/local/bin/is_app_ready
 ```
+
+# PODs design
+## Labels, selectors and annotations
