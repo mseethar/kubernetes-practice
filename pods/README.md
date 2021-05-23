@@ -84,3 +84,9 @@ livenessProbe:
 
 # PODs design
 ## Labels, selectors and annotations
+
+# Misc Pod and Container commands
+
+> $ `kubectl exec <pod-name> [<container-name>] -- <command-to-be-executed>`
+
+> $ `kubectl exec webapp -- cat /log/app.log`
