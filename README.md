@@ -176,7 +176,7 @@ https://github.com/lucassha/CKAD-resources
 
 
 # Misc
-> `kubectl set-context --current --namespace=<namespace-name>`
+> `kubectl config set-context --current --namespace=<namespace-name>`
 
 > `kubectl run nginx --image=nginx   # (deployment)`  
 
